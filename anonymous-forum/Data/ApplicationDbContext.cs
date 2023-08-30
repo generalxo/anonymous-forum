@@ -13,7 +13,7 @@ namespace anonymous_forum.Data
 		{
 			//Connection string
 			//Edit the Data Source to your own SQL Server
-			optionsBuilder.UseSqlServer("Data Source=DESKTOP-JD35EGR; Initial Catalog=ForumDb;Integrated Security=true");
+			optionsBuilder.UseSqlServer(CString.connectionString); ;
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

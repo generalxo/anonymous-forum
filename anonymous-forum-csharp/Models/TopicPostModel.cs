@@ -13,7 +13,7 @@ namespace anonymous_forum_csharp.Models
 		public int PostId { get; set; }
 
 		[Required]
-		public int GenreId { get; set; }
+		public int TopicId { get; set; }
 
 		// Navigation Properties
 		public virtual TopicModel Topics { get; set; }

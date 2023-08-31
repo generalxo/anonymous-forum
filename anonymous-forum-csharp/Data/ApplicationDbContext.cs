@@ -24,7 +24,7 @@ namespace anonymous_forum_csharp.Data
 			modelBuilder.Entity<TopicPostModel>()
 				.HasOne(x => x.Topics)
 				.WithMany(x => x.TopicPosts)
-				.HasForeignKey(x => x.PostId);
+				.HasForeignKey(x => x.TopicId);
 
 			modelBuilder.Entity<TopicPostModel>()
 				.HasOne(x => x.Posts)
@@ -47,11 +47,11 @@ namespace anonymous_forum_csharp.Data
 					new PostModel { Id = 5, Title = "How to format your post", Text = "You can format your post using Markdown." });
 
 			modelBuilder.Entity<TopicPostModel>().HasData(
-				new TopicPostModel { Id = 1, PostId = 1, GenreId = 1 },
-					new TopicPostModel { Id = 2, PostId = 2, GenreId = 1 },
-					new TopicPostModel { Id = 3, PostId = 3, GenreId = 1 },
-					new TopicPostModel { Id = 4, PostId = 4, GenreId = 1 },
-					new TopicPostModel { Id = 5, PostId = 5, GenreId = 1 }
+				new TopicPostModel { Id = 1, PostId = 1, TopicId = 1 },
+					new TopicPostModel { Id = 2, PostId = 2, TopicId = 1 },
+					new TopicPostModel { Id = 3, PostId = 3, TopicId = 1 },
+					new TopicPostModel { Id = 4, PostId = 4, TopicId = 1 },
+					new TopicPostModel { Id = 5, PostId = 5, TopicId = 1 }
 				);
 		}
 

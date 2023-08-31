@@ -18,6 +18,6 @@ namespace anonymous_forum_csharp.Models
 		public string? Description { get; set; }
 
 		// Navigation Properties
-		public virtual IEnumerable<TopicPostModel> TopicPosts { get; set; }
+		public virtual IEnumerable<PostModel> Posts { get; set; }
 	}
 }

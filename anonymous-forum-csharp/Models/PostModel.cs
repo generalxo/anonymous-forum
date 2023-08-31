@@ -16,7 +16,10 @@ namespace anonymous_forum_csharp.Models
 		[Required]
 		public string? Text { get; set; }
 
+        [Required]
+		public int TopicId { get; set; }
+        
 		// Navigation Properties
-		public virtual IEnumerable<TopicPostModel> TopicPosts { get; set; }
+        public virtual TopicModel Topics { get; set; }
 	}
 }

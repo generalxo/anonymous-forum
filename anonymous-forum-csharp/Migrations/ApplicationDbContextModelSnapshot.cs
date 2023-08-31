@@ -38,7 +38,12 @@ namespace anonymous_forum_csharp.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("TopicId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TopicId");
 
                     b.ToTable("Posts");
 
@@ -47,31 +52,36 @@ namespace anonymous_forum_csharp.Migrations
                         {
                             Id = 1,
                             Text = "Welcome to Anonymous Forum! Feel free to post anything you want here. Just remember to follow the rules.",
-                            Title = "Welcome to Anonymous Forum!"
+                            Title = "Welcome to Anonymous Forum!",
+                            TopicId = 1
                         },
                         new
                         {
                             Id = 2,
                             Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.",
-                            Title = "Rules"
+                            Title = "Rules",
+                            TopicId = 2
                         },
                         new
                         {
                             Id = 3,
                             Text = "To post, simply click on the \"New Post\" button on the top right corner of the page. You can also reply to other posts by clicking on the \"Reply\" button.",
-                            Title = "How to post"
+                            Title = "How to post",
+                            TopicId = 3
                         },
                         new
                         {
                             Id = 4,
                             Text = "You can format your post using Markdown.",
-                            Title = "How to format your post"
+                            Title = "How to format your post",
+                            TopicId = 4
                         },
                         new
                         {
                             Id = 5,
                             Text = "You can format your post using Markdown.",
-                            Title = "How to format your post"
+                            Title = "How to format your post",
+                            TopicId = 5
                         });
                 });
 
@@ -130,88 +140,20 @@ namespace anonymous_forum_csharp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("anonymous_forum_csharp.Models.TopicPostModel", b =>
+            modelBuilder.Entity("anonymous_forum_csharp.Models.PostModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TopicId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("GenrePosts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            PostId = 1,
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            PostId = 2,
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            PostId = 3,
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            PostId = 4,
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            PostId = 5,
-                            TopicId = 1
-                        });
-                });
-
-            modelBuilder.Entity("anonymous_forum_csharp.Models.TopicPostModel", b =>
-                {
-                    b.HasOne("anonymous_forum_csharp.Models.PostModel", "Posts")
-                        .WithMany("TopicPosts")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("anonymous_forum_csharp.Models.TopicModel", "Topics")
-                        .WithMany("TopicPosts")
+                        .WithMany("Posts")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Posts");
-
                     b.Navigation("Topics");
-                });
-
-            modelBuilder.Entity("anonymous_forum_csharp.Models.PostModel", b =>
-                {
-                    b.Navigation("TopicPosts");
                 });
 
             modelBuilder.Entity("anonymous_forum_csharp.Models.TopicModel", b =>
                 {
-                    b.Navigation("TopicPosts");
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

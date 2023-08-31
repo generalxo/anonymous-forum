@@ -7,9 +7,6 @@ namespace anonymous_forum_csharp.Controllers
     {
         public IActionResult Index(string topicName)
         {
-            var context = new ApplicationDbContext();
-            var post = context.Posts.ToList();
-            var viewModel = new List<>
             return View();
         }
     }

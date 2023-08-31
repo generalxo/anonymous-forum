@@ -1,32 +1,50 @@
-﻿using anonymous_forum_csharp.Models;
+﻿using anonymous_forum_csharp.Data;
+using anonymous_forum_csharp.Models;
+using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace anonymous_forum_csharp.Controllers
 {
-	public class HomeController : Controller
-	{
-		private readonly ILogger<HomeController> _logger;
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
-		{
-			_logger = logger;
-		}
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
 
-		public IActionResult Index()
-		{
-			return View();
-		}
+        public IActionResult Index()
+        {
+            var context = new ApplicationDbContext();
+            var topics = context.Topics.ToList();
 
-		public IActionResult Privacy()
-		{
-			return View();
-		}
+            var viewModel = new List<HomeIndexViewModel>();
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
-	}
+            foreach (var topic in topics)
+            {
+                var topicViewModel = new HomeIndexViewModel
+                {
+                    Name = topic.Name,
+                    Description = topic.Description
+                };
+
+                viewModel.Add(topicViewModel);
+            }
+
+            return View(viewModel);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
 }

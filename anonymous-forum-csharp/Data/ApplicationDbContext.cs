@@ -7,7 +7,6 @@ namespace anonymous_forum_csharp.Data
 	{
 		public DbSet<TopicModel>? Topics { get; set; }
 		public DbSet<PostModel>? Posts { get; set; }
-		public DbSet<TopicPostModel>? GenrePosts { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -20,16 +19,11 @@ namespace anonymous_forum_csharp.Data
 		{
 			// Mapping Foreign Keys
 
-			// GenrePostModel
-			modelBuilder.Entity<TopicPostModel>()
+			
+			modelBuilder.Entity<PostModel>()
 				.HasOne(x => x.Topics)
-				.WithMany(x => x.TopicPosts)
+				.WithMany(x => x.Posts)
 				.HasForeignKey(x => x.TopicId);
-
-			modelBuilder.Entity<TopicPostModel>()
-				.HasOne(x => x.Posts)
-				.WithMany(x => x.TopicPosts)
-				.HasForeignKey(x => x.PostId);
 
 			// Database Seeding
 			modelBuilder.Entity<TopicModel>().HasData(
@@ -40,19 +34,11 @@ namespace anonymous_forum_csharp.Data
 					new TopicModel { Id = 5, Name = "Off-Topic", Description = "Off-topic discussion" });
 
 			modelBuilder.Entity<PostModel>().HasData(
-				new PostModel { Id = 1, Title = "Welcome to Anonymous Forum!", Text = "Welcome to Anonymous Forum! Feel free to post anything you want here. Just remember to follow the rules." },
-					new PostModel { Id = 2, Title = "Rules", Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content." },
-					new PostModel { Id = 3, Title = "How to post", Text = "To post, simply click on the \"New Post\" button on the top right corner of the page. You can also reply to other posts by clicking on the \"Reply\" button." },
-					new PostModel { Id = 4, Title = "How to format your post", Text = "You can format your post using Markdown." },
-					new PostModel { Id = 5, Title = "How to format your post", Text = "You can format your post using Markdown." });
-
-			modelBuilder.Entity<TopicPostModel>().HasData(
-				new TopicPostModel { Id = 1, PostId = 1, TopicId = 1 },
-					new TopicPostModel { Id = 2, PostId = 2, TopicId = 1 },
-					new TopicPostModel { Id = 3, PostId = 3, TopicId = 1 },
-					new TopicPostModel { Id = 4, PostId = 4, TopicId = 1 },
-					new TopicPostModel { Id = 5, PostId = 5, TopicId = 1 }
-				);
+				new PostModel { Id = 1, Title = "Welcome to Anonymous Forum!", Text = "Welcome to Anonymous Forum! Feel free to post anything you want here. Just remember to follow the rules.", TopicId = 1 },
+					new PostModel { Id = 2, Title = "Rules", Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.", TopicId = 2 },
+					new PostModel { Id = 3, Title = "How to post", Text = "To post, simply click on the \"New Post\" button on the top right corner of the page. You can also reply to other posts by clicking on the \"Reply\" button.", TopicId = 3 },
+					new PostModel { Id = 4, Title = "How to format your post", Text = "You can format your post using Markdown.", TopicId = 4 },
+					new PostModel { Id = 5, Title = "How to format your post", Text = "You can format your post using Markdown.", TopicId = 5 });
 		}
 
 	}

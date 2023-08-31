@@ -1,4 +1,5 @@
 ﻿using anonymous_forum_csharp.Data;
+using anonymous_forum_csharp.Data.Repository;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 
 namespace anonymous_forum_csharp.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,8 +19,11 @@ namespace anonymous_forum_csharp.Controllers
 
         public IActionResult Index()
         {
+
             var context = new ApplicationDbContext();
-            var topics = context.Topics.ToList();
+            TopicRepository topicRepository = new TopicRepository(context);
+
+            var topics = topicRepository.GetAll().ToList();
 
             var viewModel = new List<HomeIndexViewModel>();
 

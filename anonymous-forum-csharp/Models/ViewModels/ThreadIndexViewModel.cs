@@ -6,5 +6,8 @@
         public string Title { get; set;}
         public string Text { get; set;}
 
+
+        //public PostModel Post { get; set;}
+        //public List<PostModel> Posts { get; set;}
     }
 }

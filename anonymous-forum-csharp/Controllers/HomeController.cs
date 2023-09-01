@@ -24,20 +24,20 @@ namespace anonymous_forum_csharp.Controllers
             TopicRepository topicRepository = new TopicRepository(context);
 
             var topics = topicRepository.GetAll().ToList();
-
+            
             var viewModel = new List<HomeIndexViewModel>();
 
             foreach (var topic in topics)
             {
                 var topicViewModel = new HomeIndexViewModel
                 {
+                    Id = topic.Id,
                     Name = topic.Name,
                     Description = topic.Description
                 };
 
                 viewModel.Add(topicViewModel);
             }
-
             return View(viewModel);
         }
 

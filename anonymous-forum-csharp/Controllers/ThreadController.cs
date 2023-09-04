@@ -14,6 +14,19 @@ namespace anonymous_forum_csharp.Controllers
             _postRepository = postRepository;
         }
 
+        //public IActionResult Index(int id)
+        //{
+        //    var posts = _postRepository.GetByCondition(x => x.Id == id);
+        //    if (!posts.Any())
+        //    {
+        //        // Handle error
+        //    }
+
+        //    var viewModel = CreateViewModel(posts);
+        //    ViewBag.Id = viewModel.Post.Id;
+        //    return View(viewModel);
+        //}
+
         public IActionResult Index(int id)
         {
             var posts = _postRepository.GetByCondition(x => x.Id == id);
@@ -25,6 +38,24 @@ namespace anonymous_forum_csharp.Controllers
             var viewModel = CreateViewModel(posts);
 
             return View(viewModel);
+        }
+
+        public IActionResult ThreadPostBox() 
+        {
+            ThreadCreateViewModel viewModel = new(); 
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ThreadPostBox(ThreadCreateViewModel viewModel)
+        {
+            //PostModel post = new();
+            //post.Text = viewModel.Text;
+            //post.Title = viewModel.Title;
+
+
+            //_postRepository.Create
+            return View();
         }
 
         private static ThreadIndexViewModel CreateViewModel(IQueryable<PostModel> posts)

@@ -17,11 +17,11 @@
         }
     </ul>
 </div>
-@using (Html.BeginForm("Index", "Thread"))
+@* @using (Html.BeginForm("Index", "Thread"))
 {
     @Html.LabelFor(m => m.Post.Title)
     @Html.EditorFor(m => m.Post.Text)
     <input type="submit" value="Create" />
-}
+} *@
 
-@*@Html.PartialAsync("ThreadPostBox")*@
+@await Html.PartialAsync("ThreadPostBox", Model.ThreadCreate)

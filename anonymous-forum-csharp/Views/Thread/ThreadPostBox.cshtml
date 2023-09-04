@@ -6,9 +6,17 @@
 @{
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("ThreadPostBox", "Thread", FormMethod.Post))
 {
+    @Html.ValidationSummary()
+
     @Html.LabelFor(m => m.Title)
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title)
+
+    @Html.LabelFor(m => m.Text)
     @Html.EditorFor(m => m.Text)
+    @Html.ValidationMessageFor(m => m.Text)
+
     <input type="submit" value="Create" />
 }

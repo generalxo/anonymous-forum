@@ -1,5 +1,4 @@
-﻿using anonymous_forum_csharp.Data;
-using anonymous_forum_csharp.Data.Repository;
+﻿using anonymous_forum_csharp.Data.Repository.IRepository;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,37 +6,24 @@ using System.Diagnostics;
 
 namespace anonymous_forum_csharp.Controllers
 {
-
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ITopicRepository _topicRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ITopicRepository topicRepository)
         {
-            _logger = logger;
+            _topicRepository = topicRepository;
         }
 
         public IActionResult Index()
         {
+            var topics = _topicRepository.GetAll().ToList();
 
-            var context = new ApplicationDbContext();
-            TopicRepository topicRepository = new TopicRepository(context);
-
-            var topics = topicRepository.GetAll().ToList();
-            
-            var viewModel = new List<HomeIndexViewModel>();
-
-            foreach (var topic in topics)
+            var viewModel = new HomeIndexViewModel
             {
-                var topicViewModel = new HomeIndexViewModel
-                {
-                    Id = topic.Id,
-                    Name = topic.Name,
-                    Description = topic.Description
-                };
+                TopicList = topics
+            };
 
-                viewModel.Add(topicViewModel);
-            }
             return View(viewModel);
         }
 

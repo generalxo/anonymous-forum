@@ -1,12 +1,12 @@
 ﻿@using anonymous_forum_csharp.Models.ViewModels
-@model List<HomeIndexViewModel>
+@model HomeIndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <ul>
-        @foreach (var item in Model)
+        @foreach (var item in Model.TopicList)
 		{
             <li><a href="@Url.Action("Index", "Thread", new {id = item.Id})">@item.Name</a></li>
 		}

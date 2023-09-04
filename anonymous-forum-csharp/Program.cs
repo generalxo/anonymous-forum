@@ -1,4 +1,9 @@
+using anonymous_forum.Data.Repository;
+using anonymous_forum.Data.Repository.IRepository;
 using anonymous_forum_csharp.Data;
+using anonymous_forum_csharp.Data.Repository;
+using anonymous_forum_csharp.Data.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace anonymous_forum_csharp
 {
@@ -11,7 +16,13 @@ namespace anonymous_forum_csharp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<ApplicationDbContext>();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(CString.connectionString));
+
+            // Dependency injection
+            builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
 
             var app = builder.Build();
 

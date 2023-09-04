@@ -1,5 +1,5 @@
-﻿using anonymous_forum.Data.Repository;
-using anonymous_forum_csharp.Data;
+﻿using anonymous_forum.Data.Repository.IRepository;
+using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,47 +7,35 @@ namespace anonymous_forum_csharp.Controllers
 {
     public class ThreadController : Controller
     {
+        private readonly IPostRepository _postRepository;
+
+        public ThreadController(IPostRepository postRepository)
+        {
+            _postRepository = postRepository;
+        }
 
         public IActionResult Index(int id)
         {
-            var threadCreateViewModel = new ThreadCreateViewModel();
-            var context = new ApplicationDbContext();
-            PostRepository postRepository = new PostRepository(context);
-            var posts = postRepository.GetByCondition(x => x.Id == id).AsQueryable().Select( u => new { u.Id, u.Title, u.Text, u.TopicId }).ToList();
-            var viewmodelList = new List<ThreadIndexViewModel>();
-            //var postList = new ThreadIndexViewModel();
-            //postList.Posts = posts.ToList();
-
-            
-
-            foreach (var post in posts)
+            var posts = _postRepository.GetByCondition(x => x.Id == id);
+            if (!posts.Any())
             {
-                var viewmodel = new ThreadIndexViewModel
-                {
-                    Id = post.Id,
-                    Title = post.Title,
-                    Text = post.Text
-                 };
-                viewmodelList.Add(viewmodel);
+                // Handle error
             }
 
-            Tuple<List<ThreadIndexViewModel>, ThreadIndexViewModel> tuple;
-            tuple = new Tuple<List<ThreadIndexViewModel>, ThreadIndexViewModel>(viewmodelList, new ThreadIndexViewModel());
-            return View(tuple);
+            var viewModel = CreateViewModel(posts);
+
+            return View(viewModel);
         }
 
-        [HttpPost]
-        public IActionResult Create()
+        private static ThreadIndexViewModel CreateViewModel(IQueryable<PostModel> posts)
         {
-            var threadCreateViewModel = new ThreadCreateViewModel();
-            return View(threadCreateViewModel);
-        }
+            var viewModel = new ThreadIndexViewModel
+            {
+                PostList = posts.Select(u => new PostModel { Id = u.Id, Title = u.Title, Text = u.Text, TopicId = u.TopicId }).ToList(),
+                Post = new PostModel()
+            };
 
-        public IActionResult OnGetPartial() =>
-            new PartialViewResult
-        {
-            ViewName = "ThreadPostBox",
-            ViewData = ViewData
-        };
+            return viewModel;
+        }
     }
 }

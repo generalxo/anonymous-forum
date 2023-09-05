@@ -4,10 +4,10 @@ using anonymous_forum_csharp.Models;
 
 namespace anonymous_forum_csharp.Data.Repository
 {
-	public class TopicRepository : RepositoryBase<TopicModel>, ITopicRepository
-	{
-		public TopicRepository(ApplicationDbContext context) : base(context)
-		{
-		}
-	}
+    public class TopicRepository : RepositoryBase<TopicModel>, ITopicRepository
+    {
+        public TopicRepository(ApplicationDbContext context) : base(context)
+        {
+        }
+    }
 }

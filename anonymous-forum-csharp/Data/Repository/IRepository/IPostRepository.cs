@@ -1,9 +1,9 @@
 ﻿
 using anonymous_forum_csharp.Models;
 
-namespace anonymous_forum.Data.Repository.IRepository
+namespace anonymous_forum_csharp.Data.Repository.IRepository
 {
-	public interface IPostRepository : IRepositoryBase<PostModel>
-	{
-	}
+    public interface IPostRepository : IRepositoryBase<PostModel>
+    {
+    }
 }

@@ -9,13 +9,15 @@
 }
 
 <div class="text-center">
-    <ul>
         @foreach (var item in Model.PostList)
         {
-            <li>@item.Title</li>
-            <li>@item.Text</li>
+        <a href="@Url.Action("Index", "Home")">
+            <div class="post-box">
+            <h4>@item.Title</h4>
+            <p>@item.Text</p>
+            </div>
+        </a>
         }
-    </ul>
 </div>
 @* @using (Html.BeginForm("Index", "Thread"))
 {
@@ -25,3 +27,5 @@
 } *@
 
 @await Html.PartialAsync("ThreadPostBox", Model.ThreadCreate)
+
+

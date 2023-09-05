@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.post-box {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+a:has(.post-box) {
+    text-decoration: none;
+    color: black;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+
+}

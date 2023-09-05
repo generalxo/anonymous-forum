@@ -1,8 +1,6 @@
 using anonymous_forum.Data.Repository;
-using anonymous_forum.Data.Repository.IRepository;
 using anonymous_forum_csharp.Data;
 using anonymous_forum_csharp.Data.Repository;
-using anonymous_forum_csharp.Data.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace anonymous_forum_csharp
@@ -21,8 +19,8 @@ namespace anonymous_forum_csharp
                 options.UseSqlServer(CString.connectionString));
 
             // Dependency injection
-            builder.Services.AddScoped<ITopicRepository, TopicRepository>();
-            builder.Services.AddScoped<IPostRepository, PostRepository>();
+            builder.Services.AddScoped<TopicRepository>();
+            builder.Services.AddScoped<PostRepository>();
 
             var app = builder.Build();
 

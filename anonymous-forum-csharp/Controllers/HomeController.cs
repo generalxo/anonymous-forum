@@ -1,4 +1,4 @@
-﻿using anonymous_forum_csharp.Data.Repository.IRepository;
+﻿using anonymous_forum_csharp.Data.Repository;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +8,9 @@ namespace anonymous_forum_csharp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITopicRepository _topicRepository;
+        private readonly TopicRepository _topicRepository;
 
-        public HomeController(ITopicRepository topicRepository)
+        public HomeController(TopicRepository topicRepository)
         {
             _topicRepository = topicRepository;
         }

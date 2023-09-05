@@ -45,7 +45,7 @@ namespace anonymous_forum_csharp.Migrations
 
                     b.HasIndex("TopicId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
 
                     b.HasData(
                         new
@@ -105,7 +105,7 @@ namespace anonymous_forum_csharp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Topics");
+                    b.ToTable("Topics", (string)null);
 
                     b.HasData(
                         new

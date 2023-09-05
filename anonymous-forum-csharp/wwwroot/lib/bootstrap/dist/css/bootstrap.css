@@ -64,6 +64,8 @@
   box-sizing: border-box;
 }
 
+
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
@@ -105,6 +107,8 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
 }
+
+
 @media (min-width: 1200px) {
   h1, .h1 {
     font-size: 2.5rem;
@@ -11216,6 +11220,8 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
+
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

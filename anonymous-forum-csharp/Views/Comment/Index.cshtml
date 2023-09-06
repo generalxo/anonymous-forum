@@ -7,12 +7,15 @@
 *@
 @{
 }
+<h1>@Model.Post.Title</h1>
+<h2>@Model.Post.Text</h2>
+@await Html.PartialAsync("CommentPostBox", Model.AddComment)
 
 <div class="text-center">
     @foreach (var item in Model.CommentList)
     {
             <div class="post-box">
                 <p>@item.Text</p>
-            </div>    }
+            </div>    
+    }
 </div>
-<p>Test från comment view</p>

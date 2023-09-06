@@ -11,7 +11,7 @@
 <div class="text-center">
         @foreach (var item in Model.PostList)
         {
-        <a href="@Url.Action("Index", "Home")">
+        <a href="@Url.Action("Index", "Comment", new { Id = item.Id})">
             <div class="post-box">
             <h4>@item.Title</h4>
             <p>@item.Text</p>

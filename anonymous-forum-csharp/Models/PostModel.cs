@@ -21,5 +21,7 @@ namespace anonymous_forum_csharp.Models
         
 		// Navigation Properties
         public virtual TopicModel Topics { get; set; }
+
+		public virtual IEnumerable<CommentModel> Comments { get; set; }
 	}
 }

@@ -1,0 +1,18 @@
+﻿@using anonymous_forum_csharp.Models.ViewModels
+@using anonymous_forum_csharp.Models
+@model CommentViewModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="text-center">
+    @foreach (var item in Model.CommentList)
+    {
+            <div class="post-box">
+                <p>@item.Text</p>
+            </div>    }
+</div>
+<p>Test från comment view</p>

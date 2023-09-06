@@ -21,6 +21,8 @@ namespace anonymous_forum_csharp
             // Dependency injection
             builder.Services.AddScoped<TopicRepository>();
             builder.Services.AddScoped<PostRepository>();
+            builder.Services.AddScoped<CommentRepository>();
+
 
             var app = builder.Build();
 

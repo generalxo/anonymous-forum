@@ -24,13 +24,38 @@ body {
     cursor: pointer;
 }
 
-a:has(.post-box) {
+a {
     text-decoration: none;
     color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.topics {
+    font-size: 1.61rem;
 }
 
 .input-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
 
+label {
+    font-size: 1.25rem;
+}
+
+.button {
+    margin: 0.50rem;
+}
+
+textarea {
+    height: 7rem;
+    width: 40rem;
+    /*resize:none;*/
+    
 }

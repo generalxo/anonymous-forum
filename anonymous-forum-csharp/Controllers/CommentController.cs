@@ -42,9 +42,8 @@ namespace anonymous_forum_csharp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CommentPostBox(AddCommentViewModel viewModel)
+        public IActionResult CommentPostBox(AddCommentViewModel viewModel, int id)
         {
-            int id = (int)TempData["Id"];
             Console.WriteLine($"id: {id}, text: {viewModel.Text}");
 
             var comment = new CommentModel

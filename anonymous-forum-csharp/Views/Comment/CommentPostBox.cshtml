@@ -6,14 +6,15 @@
 @{
 }
 
-@using (Html.BeginForm("CommentPostBox", "Comment", FormMethod.Post))
+@using (Html.BeginForm("CommentPostBox", "Comment", new { Id = ViewContext.RouteData.Values["id"] }, FormMethod.Post))
 {
     <div class="input-form">
         @Html.ValidationSummary()
 
         @Html.LabelFor(m => m.Text)
-        @Html.EditorFor(m => m.Text)
+        @Html.TextAreaFor(m => m.Text)
         @Html.ValidationMessageFor(m => m.Text)
+        <input class="button" type="submit" value="Create" />
     </div>
-    <input type="submit" value="Create" />
+   
 }

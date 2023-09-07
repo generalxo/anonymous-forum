@@ -1,18 +1,16 @@
-﻿using anonymous_forum_csharp.Data.Repository;
-using anonymous_forum_csharp.Models.ViewModels;
+﻿using anonymous_forum_csharp.Data.Repository.IRepository;
 using anonymous_forum_csharp.Models;
+using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using anonymous_forum.Data.Repository;
 
 namespace anonymous_forum_csharp.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly CommentRepository _commentRepository;
-        private readonly PostRepository _postRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IPostRepository _postRepository;
 
-        public CommentController(CommentRepository commentRepository, PostRepository postRepository)
+        public CommentController(ICommentRepository commentRepository, IPostRepository postRepository)
         {
             _commentRepository = commentRepository;
             _postRepository = postRepository;
@@ -21,7 +19,7 @@ namespace anonymous_forum_csharp.Controllers
         {
             var comments = _commentRepository.GetByCondition(x => x.PostId == id);
             var post = _postRepository.GetByCondition(x => x.Id == id);
-            TempData["Id"] = id; // Store id in TempData
+            TempData["Id"] = id;
             var viewModel = CreateViewModel(comments, post);
 
             return View(viewModel);
@@ -56,7 +54,7 @@ namespace anonymous_forum_csharp.Controllers
             };
             _commentRepository.Create(comment);
 
-            return RedirectToAction("Index", new { id = id }); // Redirect to Index action
+            return RedirectToAction("Index", new { id = id });
         }
     }
 }

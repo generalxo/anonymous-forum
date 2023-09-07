@@ -24,7 +24,6 @@ namespace anonymous_forum_csharp.Controllers
             }
 
             var viewModel = CreateViewModel(posts);
-            TempData["Id"] = id;
 
             return View(viewModel);
         }
@@ -36,9 +35,8 @@ namespace anonymous_forum_csharp.Controllers
         }
 
         [HttpPost]
-        public IActionResult ThreadPostBox(ThreadCreateViewModel viewModel)
+        public IActionResult ThreadPostBox(ThreadCreateViewModel viewModel, int id)
         {
-            int id = (int)TempData["Id"];
             Console.WriteLine($"id: {id}, text: {viewModel.Text}, title: {viewModel.Title}");
 
             var post = new PostModel

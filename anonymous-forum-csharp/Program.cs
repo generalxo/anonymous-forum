@@ -1,6 +1,7 @@
 using anonymous_forum.Data.Repository;
 using anonymous_forum_csharp.Data;
 using anonymous_forum_csharp.Data.Repository;
+using anonymous_forum_csharp.Data.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace anonymous_forum_csharp
@@ -19,9 +20,9 @@ namespace anonymous_forum_csharp
                 options.UseSqlServer(CString.connectionString));
 
             // Dependency injection
-            builder.Services.AddScoped<TopicRepository>();
-            builder.Services.AddScoped<PostRepository>();
-            builder.Services.AddScoped<CommentRepository>();
+            builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 
             var app = builder.Build();
@@ -30,7 +31,6 @@ namespace anonymous_forum_csharp
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

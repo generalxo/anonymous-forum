@@ -1,6 +1,8 @@
 ﻿using anonymous_forum_csharp.Data.Repository.IRepository;
+using anonymous_forum_csharp.Helpers;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -23,7 +25,6 @@ namespace anonymous_forum_csharp.Controllers
             {
                 TopicList = topics
             };
-
             return View(viewModel);
         }
 

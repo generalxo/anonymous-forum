@@ -1,4 +1,5 @@
 ﻿using anonymous_forum_csharp.Data.Repository.IRepository;
+using anonymous_forum_csharp.Helpers;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -45,10 +46,11 @@ namespace anonymous_forum_csharp.Controllers
         public IActionResult CommentPostBox(AddCommentViewModel viewModel, int id)
         {
             Console.WriteLine($"id: {id}, text: {viewModel.Text}");
-
+            string? ip = Helper.GetIp(HttpContext);
             var comment = new CommentModel
             {
                 Text = viewModel.Text,
+                IpAdress = ip,
                 PostId = id
             };
             _commentRepository.Create(comment);

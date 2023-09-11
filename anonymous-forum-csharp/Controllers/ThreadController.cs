@@ -1,4 +1,5 @@
 ﻿using anonymous_forum_csharp.Data.Repository.IRepository;
+using anonymous_forum_csharp.Helpers;
 using anonymous_forum_csharp.Models;
 using anonymous_forum_csharp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,10 @@ namespace anonymous_forum_csharp.Controllers
             }
 
             var viewModel = CreateViewModel(posts);
-
+            
+            
+            string? ip = Helper.GetIp(HttpContext);
+            Console.WriteLine(ip);
             return View(viewModel);
         }
 
@@ -38,14 +42,17 @@ namespace anonymous_forum_csharp.Controllers
         public IActionResult ThreadPostBox(ThreadCreateViewModel viewModel, int id)
         {
             Console.WriteLine($"id: {id}, text: {viewModel.Text}, title: {viewModel.Title}");
-
+            string? ip = Helper.GetIp(HttpContext);
             var post = new PostModel
             {
                 Title = viewModel.Title,
                 Text = viewModel.Text,
+                IpAdress = ip,
                 TopicId = id
             };
             _postRepository.Create(post);
+
+            
 
             return RedirectToAction("Index", new { id = id });
         }

@@ -41,15 +41,15 @@ namespace anonymous_forum_csharp.Data
                     new TopicModel { Id = 5, Name = "Off-Topic", Description = "Off-topic discussion" });
 
             modelBuilder.Entity<PostModel>().HasData(
-                    new PostModel { Id = 1, Title = "Welcome to Anonymous Forum!", Text = "Welcome to Anonymous Forum! Feel free to post anything you want here. Just remember to follow the rules.", TopicId = 1 },
-                    new PostModel { Id = 2, Title = "Rules", Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.", TopicId = 2 },
-                    new PostModel { Id = 3, Title = "How to post", Text = "To post, simply click on the \"New Post\" button on the top right corner of the page. You can also reply to other posts by clicking on the \"Reply\" button.", TopicId = 3 },
-                    new PostModel { Id = 4, Title = "How to format your post", Text = "You can format your post using Markdown.", TopicId = 4 },
-                    new PostModel { Id = 5, Title = "How to format your post", Text = "You can format your post using Markdown.", TopicId = 5 });
+                    new PostModel { Id = 1, Title = "Forum rules", Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.", IpAdress = "::1", TopicId = 1 },
+                    new PostModel { Id = 2, Title = "Ukraine war", Text = "On 24 February 2022, Russia invaded Ukraine in an escalation of the Russo-Ukrainian War which began in 2014.", IpAdress = "::1", TopicId = 2 },
+                    new PostModel { Id = 3, Title = "How to change a tire", Text = "Before you start, make sure you find a safe place to park. It’s better to drive further and risk damaging the wheel rim than stop somewhere dangerous – such as on a narrow road.", IpAdress = "::1", TopicId = 3 },
+                    new PostModel { Id = 4, Title = "Add sports topic", Text = "I would like you to add sports topic so we can discuss F1!!", IpAdress = "::1", TopicId = 4 },
+                    new PostModel { Id = 5, Title = "Lucid dreams", Text = "A lucid dream is a type of dream in which the dreamer becomes aware that they are dreaming while dreaming.", IpAdress = "::1", TopicId = 5 });
 
             modelBuilder.Entity<CommentModel>().HasData(
-                    new CommentModel { Id = 1, Text = "First (comment)!", PostId = 1 },
-                    new CommentModel { Id = 2, Text = "Rickard was here", PostId = 2 });
+                    new CommentModel { Id = 1, Text = "First (comment)!", IpAdress = "::1", PostId = 1 },
+                    new CommentModel { Id = 2, Text = "Rickard was here", IpAdress = "::1", PostId = 2 });
         }
 
     }

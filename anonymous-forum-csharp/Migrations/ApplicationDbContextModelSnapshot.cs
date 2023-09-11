@@ -29,6 +29,10 @@ namespace anonymous_forum_csharp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("IpAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 
@@ -47,12 +51,14 @@ namespace anonymous_forum_csharp.Migrations
                         new
                         {
                             Id = 1,
+                            IpAdress = "::1",
                             PostId = 1,
                             Text = "First (comment)!"
                         },
                         new
                         {
                             Id = 2,
+                            IpAdress = "::1",
                             PostId = 2,
                             Text = "Rickard was here"
                         });
@@ -65,6 +71,10 @@ namespace anonymous_forum_csharp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("IpAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -88,36 +98,41 @@ namespace anonymous_forum_csharp.Migrations
                         new
                         {
                             Id = 1,
-                            Text = "Welcome to Anonymous Forum! Feel free to post anything you want here. Just remember to follow the rules.",
-                            Title = "Welcome to Anonymous Forum!",
+                            IpAdress = "::1",
+                            Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.",
+                            Title = "Forum rules",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Text = "1. Be respectful to others. 2. No spamming. 3. No NSFW content. 4. No advertising. 5. No illegal content.",
-                            Title = "Rules",
+                            IpAdress = "::1",
+                            Text = "On 24 February 2022, Russia invaded Ukraine in an escalation of the Russo-Ukrainian War which began in 2014.",
+                            Title = "Ukraine war",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Text = "To post, simply click on the \"New Post\" button on the top right corner of the page. You can also reply to other posts by clicking on the \"Reply\" button.",
-                            Title = "How to post",
+                            IpAdress = "::1",
+                            Text = "Before you start, make sure you find a safe place to park. It’s better to drive further and risk damaging the wheel rim than stop somewhere dangerous – such as on a narrow road.",
+                            Title = "How to change a tire",
                             TopicId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Text = "You can format your post using Markdown.",
-                            Title = "How to format your post",
+                            IpAdress = "::1",
+                            Text = "I would like you to add sports topic so we can discuss F1!!",
+                            Title = "Add sports topic",
                             TopicId = 4
                         },
                         new
                         {
                             Id = 5,
-                            Text = "You can format your post using Markdown.",
-                            Title = "How to format your post",
+                            IpAdress = "::1",
+                            Text = "A lucid dream is a type of dream in which the dreamer becomes aware that they are dreaming while dreaming.",
+                            Title = "Lucid dreams",
                             TopicId = 5
                         });
                 });

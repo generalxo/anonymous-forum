@@ -17,8 +17,12 @@ namespace anonymous_forum_csharp.Models
 		public string? Text { get; set; }
 
         [Required]
+        public string? IpAdress { get; set; }
+
+		//Foreign key
+        [Required]
 		public int TopicId { get; set; }
-        
+
 		// Navigation Properties
         public virtual TopicModel Topics { get; set; }
 

@@ -9,22 +9,25 @@ namespace anonymous_forum_csharp.Controllers
 	public class ThreadController : Controller
 	{
 		private readonly IPostRepository _postRepository;
+		private readonly ITopicRepository _topicRepository;
 
-		public ThreadController(IPostRepository postRepository)
+		public ThreadController(IPostRepository postRepository, ITopicRepository topicRepository)
 		{
 			_postRepository = postRepository;
+			_topicRepository = topicRepository;
 		}
 
 		[HttpGet]
 		public IActionResult Index(int id)
 		{
 			var posts = _postRepository.GetByCondition(x => x.TopicId == id);
+			var thread = _topicRepository.GetByCondition(x => x.Id == id);
 			if (!posts.Any())
 			{
 				// Handle error
 			}
 
-			var viewModel = CreateViewModel(posts);
+			var viewModel = CreateViewModel(posts, thread);
 
 
 			string? ip = Helper.GetIp(HttpContext);
@@ -58,12 +61,13 @@ namespace anonymous_forum_csharp.Controllers
 			return RedirectToAction("Index", new { id = id });
 		}
 
-		private static ThreadIndexViewModel CreateViewModel(IQueryable<PostModel> posts)
+		private static ThreadIndexViewModel CreateViewModel(IQueryable<PostModel> posts, IQueryable<TopicModel> topic)
 		{
 			var viewModel = new ThreadIndexViewModel
 			{
 				PostList = posts.Select(u => new PostModel { Id = u.Id, Title = u.Title, Text = u.Text, TopicId = u.TopicId }).ToList(),
-			};
+                Topic = topic.Select(u => new TopicModel { Id = u.Id, Name = u.Name }).FirstOrDefault()
+            };
 			return viewModel;
 		}
 	}

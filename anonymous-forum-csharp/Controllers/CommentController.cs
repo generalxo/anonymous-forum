@@ -20,7 +20,7 @@ namespace anonymous_forum_csharp.Controllers
 		{
 			var comments = _commentRepository.GetByCondition(x => x.PostId == id);
 			var post = _postRepository.GetByCondition(x => x.Id == id);
-			TempData["Id"] = id;
+			
 			var viewModel = CreateViewModel(comments, post);
 
 			return View(viewModel);
